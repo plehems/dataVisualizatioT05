@@ -90,9 +90,31 @@
 
   <footer class="site-footer" role="contentinfo">
     <div class="container">
-      <small>Built with D3.js. Data sources: TV specs & power data; electricity market prices.</small>
+      <small>
+        <span aria-label="copyright">©</span>
+        <time id="year" datetime="2025">2025</time>
+        <span class="sep">·</span>
+        Built with D3.js
+        <span class="sep">·</span>
+        Data: TV specs &amp; power; electricity spot prices
+        <span class="sep">·</span>
+        <span>
+          Generative-AI assistance used for code scaffolding and text
+          (reviewed and verified by the author).
+        </span>
+      </small>
     </div>
   </footer>
+
+  <script>
+    // Update the footer year automatically
+    const y = document.getElementById('year');
+    if (y) {
+      const now = new Date().getFullYear();
+      y.textContent = now;
+      y.setAttribute('datetime', String(now));
+    }
+  </script>
 
   <!-- Load D3 first -->
   <script src="https://d3js.org/d3.v7.min.js"></script>
