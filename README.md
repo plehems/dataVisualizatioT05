@@ -1,7 +1,6 @@
 # Data visualization T05: Multi-chat webpage
 
-Website can be access [here](data-visualizatio-t05.vercel.app).
-data-visualizatio-t05.vercel.app
+Website can be access [here](data-visualizatio-t05.vercel.app)
 
 
 ## Aim
