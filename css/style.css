@@ -1,0 +1,245 @@
+/* ------------------------------
+   Base + Variables
+------------------------------ */
+:root{
+  --bg: #f3f6ff;
+  --card-bg: #ffffff;
+  --ink: #0f172a;
+  --muted: #6b7280;
+  --accent: #2D72BC;      /* charts/links */
+  --accent-2: #E0559E;    /* secondary accent (line) */
+  --border: #e5e7eb;
+  --shadow: 0 6px 18px rgba(17, 24, 39, .08);
+  --radius-xl: 18px;
+  --radius-md: 12px;
+  --container: 900px;
+}
+
+*,
+*::before,
+*::after{ box-sizing: border-box; }
+
+html, body{
+  height: 100%;
+}
+
+body{
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ------------------------------
+   Layout
+------------------------------ */
+.container{
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding: 20px;
+}
+
+.site-header{
+  background:linear-gradient(180deg, #264653, #2a9d8f);         
+  color: white;
+  padding: 48px 0 36px;
+  box-shadow: inset 0 -1px 0 rgba(255,255,255,.25);
+}
+
+.site-title{
+  font-size: clamp(28px, 3.2vw, 44px);
+  font-weight: 800;
+  letter-spacing: .2px;
+  margin: 0 0 6px;
+}
+
+.site-subtitle{
+  margin: 0;
+  font-weight: 600;
+  font-size: clamp(16px, 1.6vw, 22px);
+  opacity: .95;
+}
+
+.intro{
+  margin: 24px 0 8px;
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.site-header .container,
+.site-footer .container{
+  max-width: none;                 /* full width inside those bands */
+  padding-inline: clamp(16px, 4vw, 40px);
+}
+
+/* Cards for each chart */
+.card{
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow);
+  padding: 18px 20px 30px;
+  margin: 16px 0 24px;
+}
+
+.card-header{
+  padding: 6px 6px 2px 6px;
+}
+
+.card h2{
+  font-size: clamp(18px, 2vw, 22px);
+  line-height: 1.3;
+  margin: 6px 0 4px;
+}
+
+.card-subtitle{
+  margin: 0 0 10px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* Chart container (figure) */
+.chart{
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 6px;
+}
+
+/* Ensure appended SVGs are responsive */
+.chart svg{
+  display: block;
+  width: 100%;
+  height: auto;           /* works with viewBox set in JS */
+  overflow: visible;      /* prevent clipped ticks/labels */
+  border-radius: var(--radius-md);
+}
+
+/* Footer */
+.site-footer{
+  margin-top: 24px;
+  background: #e76f51;
+  padding: 24px 0 40px;
+  color: var(--muted);
+  font-size: 16px;
+  border-top: 1px solid var(--border);
+}
+
+/* ------------------------------
+   Helpers / A11y
+------------------------------ */
+.visually-hidden,
+.sr-only{
+  position: absolute !important;
+  height: 1px; width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  white-space: nowrap;
+}
+
+/* Focus outline (keyboard accessibility) */
+:where(a, button, [role="button"], .card) :focus-visible{
+  outline: 3px solid rgba(45,114,188,.35);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* ------------------------------
+   Optional: Buttons (for filters later)
+------------------------------ */
+button.filter{
+  appearance: none;
+  border: 1px solid var(--border);
+  background: #fff;
+  color: var(--ink);
+  font: inherit;
+  padding: 8px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: box-shadow .15s ease, transform .05s ease, background .2s ease;
+  margin: 6px 8px 6px 0;
+}
+button.filter:hover{ box-shadow: var(--shadow); }
+button.filter:active{ transform: translateY(1px); }
+button.filter.active{
+  background: var(--accent);
+  color: #fff;
+  border-color: transparent;
+}
+
+/* ------------------------------
+   Optional: Axis/legend defaults
+   (works if you add classes in JS,
+    keeps visuals consistent)
+------------------------------ */
+.axis .domain{
+  stroke: #cbd5e1;         /* light axis line */
+}
+.axis .tick line{
+  stroke: #e5e7eb;
+}
+.axis text{
+  fill: #374151;
+  font-size: 15px;
+}
+
+.legend{
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 8px 6px 2px;
+}
+.legend-item{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 20px;
+  color: #374151;
+}
+.legend-swatch{
+  width: 12px; height: 12px; border-radius: 3px;
+  border: 1px solid rgba(0,0,0,.06);
+}
+
+/* ------------------------------
+   Responsive tweaks
+------------------------------ */
+@media (min-width: 1200px){
+  /* optional: two-column masonry without changing markup */
+  main.container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+  }
+  .intro{ grid-column: 1 / -1; }
+  .card{ margin: 0; }
+}
+
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg: #e9c46a;
+    --card-bg: #f7f8faff;
+    --ink: #0f110fff;
+    --muted: #33302eff;
+    --border: #1f2430;
+    --shadow: 0 8px 24px rgba(0,0,0,.45);
+  }
+  .site-header{ box-shadow: inset 0 -1px 0 rgba(0,0,0,.25); }
+  .axis .domain{ stroke: #2a3340; }
+  .axis .tick line{ stroke: #1f2430; }
+  .axis text{ fill: #0d0d0eff; }
+  .legend-item{ color: #cbd5e1; }
+}
+
+@media (min-width: 1200px){
+  /* Make the scatter card span all grid columns */
+  section.card:has(#scatter){ grid-column: 1 / -1; }
+  section.card:has(#line){ grid-column: 1 / -1; }
+  section.card:has(#bar55){ grid-column: 1 / -1; }
+  section.card:has(#donut){ grid-column: 1 / -1; }
+}
+

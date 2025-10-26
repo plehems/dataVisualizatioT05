@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>D3 Charts Dashboard — TV Power Consumption</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+<body>
+  <header class="site-header" role="banner">
+    <div class="container">
+      <h1 class="site-title">D3 Charts Dashboard</h1>
+      <p class="site-subtitle">TV power consumption</p>
+    </div>
+  </header>
+
+  <main id="main" class="container" role="main">
+    <!-- Intro -->
+    <section class="intro" aria-labelledby="intro-heading">
+      <h2 id="intro-heading" class="visually-hidden">Overview</h2>
+      <p>
+        This page explores TV energy consumption using four D3 charts. Each chart highlights a different
+        perspective: efficiency vs usage, technology composition, size-specific means, and market price trends.
+      </p>
+    </section>
+
+    <!-- Scatter: Star Rating vs Energy (kWh/year) -->
+    <section class="card" aria-labelledby="scatter-title">
+      <header class="card-header">
+        <h2 id="scatter-title">Efficiency vs Energy Use</h2>
+        <p class="card-subtitle">Each dot is a TV model. Do higher star ratings align with lower kWh/year?</p>
+      </header>
+      <figure id="scatter" class="chart"
+              role="img"
+              aria-label="Scatterplot showing annual energy consumption against energy star ratings">
+        <figcaption class="sr-only">
+            Scatterplot of Energy Consumption (kWh/year) by Star Rating.
+        </figcaption>
+      </figure>
+    </section>
+
+    <!-- Line: Spot power price over time -->
+    <section class="card" aria-labelledby="line-title">
+      <header class="card-header">
+        <h2 id="line-title">Electricity Spot Price Over Time</h2>
+        <p class="card-subtitle">Long-term context for energy costs ($/MWh). Trend annotated at the line end.</p>
+      </header>
+      <figure id="line" class="chart"
+              role="img"
+              aria-label="Line chart of electricity spot price over time">
+      </figure>
+      <figcaption class="sr-only">
+        Line chart of average electricity spot price ($ per MWh) by year.
+      </figcaption>
+    </section>
+
+    <!-- Bar (55"): Mean energy by technology -->
+    <section class="card" aria-labelledby="bar55-title">
+      <header class="card-header">
+        <h2 id="bar55-title">Mean Energy (55&quot; TVs)</h2>
+        <p class="card-subtitle">Average kWh/year by screen technology for 55&quot; models only.</p>
+      </header>
+      <figure id="bar55" class="chart"
+              role="img"
+              aria-label="Bar chart of mean annual energy for 55-inch TVs by technology">
+      </figure>
+      <figcaption class="sr-only">
+        Bar chart of mean annual energy consumption (kWh/year) for 55-inch TVs by technology.
+      </figcaption>
+    </section>
+
+    <!-- Donut: Technology share -->
+    <section class="card" aria-labelledby="donut-title">
+      <header class="card-header">
+        <h2 id="donut-title">Technology Mix</h2>
+        <p class="card-subtitle">Share of models by screen technology. Labels shown for slices ≥ 5%.</p>
+      </header>
+      <figure id="donut" class="chart"
+              role="img"
+              aria-label="Donut chart of model share by screen technology">
+      </figure>
+      <figcaption class="sr-only">
+        Donut chart showing proportion of TV models by screen technology.
+      </figcaption>
+    </section>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <small>Built with D3.js. Data sources: TV specs & power data; electricity market prices.</small>
+    </div>
+  </footer>
+
+  <!-- Load D3 first -->
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+
+  <!-- Shared constants (attached to window for simplicity across files) -->
+  <script src="./js/shared-constants.js"></script>
+
+  <script src="./js/scatter.js"></script>
+  <script src="./js/line.js"></script>
+  <script src="./js/bar55.js"></script>
+  <script src="./js/donut.js"></script>
+</body>
+</html>
