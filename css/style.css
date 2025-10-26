@@ -129,6 +129,9 @@ body{
   border-top: 1px solid var(--border);
 }
 
+.site-footer small .sep { margin: 0 .4rem; color: var(--muted); }
+.site-footer small { display: inline-block; line-height: 1.5; }
+
 /* ------------------------------
    Helpers / A11y
 ------------------------------ */
@@ -242,4 +245,5 @@ button.filter.active{
   section.card:has(#bar55){ grid-column: 1 / -1; }
   section.card:has(#donut){ grid-column: 1 / -1; }
 }
+
 
